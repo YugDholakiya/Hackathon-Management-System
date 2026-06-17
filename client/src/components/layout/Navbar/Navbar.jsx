@@ -52,9 +52,9 @@ console.log(isAuth);
 
   const navigation = [
     { name: "Home", path: "/" },
-    { name: "About", path: "#heroSection" },
+    { name: "About", path: "/#heroSection" },
     { name: "Hackathons", path: "/hackathons" },
-    { name: "ContactUs", path: "#footer" },
+    { name: "ContactUs", path: "/#footer" },
   ];
 
   if (isAuth && loginState.roleDetails && loginState.roleDetails.length > 0) {

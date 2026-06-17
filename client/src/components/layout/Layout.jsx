@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar/Navbar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { setRole } from "../../redux/actions/RegisterLoginActions";
@@ -15,6 +15,19 @@ function Layout() {
   const loginState = useSelector((state) => state.registerLoginReducer);
   const generalState = useSelector((state) => state.generalReducer);
   const dispatch = useDispatch();
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      setTimeout(() => {
+        const targetId = hash.substring(1);
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [hash]);
 
   useEffect(() => {
     const storedUserDetails =

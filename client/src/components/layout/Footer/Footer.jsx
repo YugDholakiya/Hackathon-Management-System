@@ -36,7 +36,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="bg-zinc-200  w-full">
+    <footer id="footer" className="bg-zinc-200  w-full">
       <div className="flex flex-col items-center justify-center   px-8 pt-8 pb-4    ">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:space-x-96">
           <div className="w-full">

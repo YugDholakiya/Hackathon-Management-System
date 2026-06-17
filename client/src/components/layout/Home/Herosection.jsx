@@ -6,7 +6,7 @@ import { Button } from "../../common/Button";
 function Herosection() {
   return (
     <>
-      <div className="flex flex-col-reverse lg:flex-row ">
+      <div id="heroSection" className="flex flex-col-reverse lg:flex-row ">
         <div className="w-full  ">
           <div className="container mx-auto h-full lg:p-5 p-5">
             <div className="flex px-4 ">
