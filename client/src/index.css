@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @font-face {
+    font-family:"NunitoSans" ;
+    src: local("NunitoSans") 
+    url("./fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf") 
+    format("truetype");
+    font-weight: bold;
+
+} */
+@layer base {
+    @font-face {
+      font-family: 'NunitoSans',sans-serif;
+      font-style: bold ;
+      font-weight: normal;
+      src: local("Nunito Sans") url("./fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf") format("truetype");
+    }
+  }
+
+  body{
+    font-family: "Nunito Sans",sans-serif;
+  }
