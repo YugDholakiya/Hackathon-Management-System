@@ -32,6 +32,9 @@ function Herosection() {
                   <span className="text-blue-500">ETHIndia:</span> the world's
                   largest Ethereum hackathon
                 </p>
+                <p className="text-base md:text-xl mb-5 lg:mb-10 text-gray-500">
+                  We believe that technology thrives when diverse minds collaborate. Hackfolic provides a seamless platform for developers, creators, and organizers to connect, host events, and build the future of software, one hackathon at a time.
+                </p>
                 <div className="flex md:justify-center lg:justify-start"><Button buttonStyle="bg-green-500 text-white text-2xl   font-medium px-4 py-2 rounded-lg border-2 border-green-500 hover:bg-white hover:text-gray-700 hover:border-blue-500 hover:shadow-xl ">
                   Learn More
                 </Button></div>

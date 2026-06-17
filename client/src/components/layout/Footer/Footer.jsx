@@ -32,6 +32,7 @@ function Footer() {
     },
     { title: "Company", links: ["About", "Meet the Team", "Accounts Review"] },
     { title: "Support", links: ["Contact", "FAQs", "Live Chat"] },
+    { title: "Contact Us", links: ["+1 (555) 019-2834", "+1 (555) 014-9821", "support@hackfolic.com"] },
   ];
 
   return (
@@ -49,7 +50,7 @@ function Footer() {
               <span className="text-green-500">people</span> who build them.
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:col-span-2 lg:grid-cols-3 lg:space-x-10 ">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:col-span-2 lg:grid-cols-4 lg:space-x-10 ">
             {sections.map((section) => (
               <FooterLinkSection
                 key={section.title}
