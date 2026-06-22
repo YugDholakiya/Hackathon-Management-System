@@ -306,7 +306,7 @@ const mapEndpointAndExecute = async (method, endpoint, inputData) => {
         return {
           success: false,
           data: null,
-          error: err.response?.data?.message || "Registration failed",
+          error: err.response?.data?.error || err.response?.data?.message || "Registration failed",
         };
       }
     }
@@ -338,7 +338,7 @@ const mapEndpointAndExecute = async (method, endpoint, inputData) => {
         return {
           success: false,
           data: null,
-          error: err.response?.data?.message || "Failed to create hackathon",
+          error: err.response?.data?.error || err.response?.data?.message || "Failed to create hackathon",
         };
       }
     }
@@ -363,7 +363,7 @@ const mapEndpointAndExecute = async (method, endpoint, inputData) => {
         return {
           success: false,
           data: null,
-          error: err.response?.data?.message || "Failed to register for hackathon",
+          error: err.response?.data?.error || err.response?.data?.message || "Failed to register for hackathon",
         };
       }
     }
@@ -392,7 +392,7 @@ const mapEndpointAndExecute = async (method, endpoint, inputData) => {
         return {
           success: false,
           data: null,
-          error: err.response?.data?.message || "Failed to update application status",
+          error: err.response?.data?.error || err.response?.data?.message || "Failed to update application status",
         };
       }
     }
@@ -431,7 +431,7 @@ const mapEndpointAndExecute = async (method, endpoint, inputData) => {
     return {
       success: false,
       data: null,
-      error: error.response?.data?.message || `Failed to ${method.toLowerCase()} data`,
+      error: error.response?.data?.error || error.response?.data?.message || `Failed to ${method.toLowerCase()} data`,
     };
   }
 };
