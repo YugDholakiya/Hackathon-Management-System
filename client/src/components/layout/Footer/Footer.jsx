@@ -32,7 +32,7 @@ function Footer() {
     },
     { title: "Company", links: ["About", "Meet the Team", "Accounts Review"] },
     { title: "Support", links: ["Contact", "FAQs", "Live Chat"] },
-    { title: "Contact Us", links: ["+1 (555) 019-2834", "+1 (555) 014-9821", "support@hackfolic.com"] },
+    { title: "Contact Us", links: ["+91 98765 43210", "+91 99887 76655", "support@hackfolic.com"] },
   ];
 
   return (
@@ -62,7 +62,7 @@ function Footer() {
         </div>
         <hr className="w-full mt-5 bg-green-500 h-[0.1rem]" />
         <div className="text-xs text-gray-700 mt-4 text-center">
-          © 2022. Company Name. All rights reserved.
+          © 2026 Chattary Ajwan Infotech Pvt. Ltd. All rights reserved.
         </div>
       </div>
     </footer>
