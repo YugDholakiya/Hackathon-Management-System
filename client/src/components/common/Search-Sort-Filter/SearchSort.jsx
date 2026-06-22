@@ -1,6 +1,5 @@
 import React from 'react'
 import SearchBar from './SearchBar'
-import Filter from './Filter'
 
 function SearchSort() {
   return (
@@ -12,11 +11,6 @@ function SearchSort() {
     <div className='w-full  md:w-1/2 lg:w-[44%]'>
     <SearchBar/>
     </div>
-  
-   <Filter/>
-     
-   
-   
 </div>
 
 
