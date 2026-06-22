@@ -58,9 +58,9 @@ export function thunkFunction(methodName, data) {
             console.log(role)
             dispatch(setRole(result.data, role,true))
             registrationSuccess(true);
-            return true;
+            return result;
           }
-          return false;
+          return result;
         }
         break;
 
@@ -94,9 +94,9 @@ export function thunkFunction(methodName, data) {
 
         if(result && result.success){
           registrationSuccess(true);
-          return true;
+          return result;
         }
-        return false;
+        return result;
 
 
       default:

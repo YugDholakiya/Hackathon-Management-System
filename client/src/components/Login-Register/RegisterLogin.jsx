@@ -278,11 +278,11 @@ function RegisterLogin({ login }) {
                         password: values.Password,
                         role: values.Role.toLowerCase(),
                       })
-                    ).then((success) => {
-                      if (success) {
+                    ).then((result) => {
+                      if (result && result.success) {
                         window.location.href = "/";
                       } else {
-                        alert("Login failed! Please check your credentials.");
+                        alert(result?.error || "Login failed! Please check your credentials.");
                       }
                     });
                   } else {
@@ -312,13 +312,13 @@ function RegisterLogin({ login }) {
                         password: values.Password,
                         role: values.Role,
                       })
-                    ).then((success) => {
-                      if (success) {
+                    ).then((result) => {
+                      if (result && result.success) {
                         alert("Registration successful! Please login.");
                         setIsLogin(true);
                         navigate("/login");
                       } else {
-                        alert("Registration failed! Email might already be registered.");
+                        alert(result?.error || "Registration failed! Email might already be registered.");
                       }
                     });
                   }
