@@ -13,6 +13,7 @@ function EditHackathonForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { hackathonId } = useParams();
+  const loginState = useSelector((state) => state.registerLoginReducer);
 
   const [selectedTechnologies, setSelectedTechnologies] = useState([]);
   const [selectedPerks, setSelectedPerks] = useState([]);
@@ -52,7 +53,7 @@ function EditHackathonForm() {
     teamMin: hackathonDetails.teamSize?.min || "",
     teamMax: hackathonDetails.teamSize?.max || "",
     techstacks: "",
-    mode: hackathonDetails.mode || "",
+    mode: hackathonDetails.mode ? hackathonDetails.mode.charAt(0).toUpperCase() + hackathonDetails.mode.slice(1).toLowerCase() : "",
     location: hackathonDetails.location || "",
   };
 
@@ -106,7 +107,8 @@ function EditHackathonForm() {
                   generalThunkFunction("UpdateHackathon", hackathonsDetails)
                 ).then((success) => {
                   if (success) {
-                    navigate("/HostMainPage");
+                    const hostId = loginState?.roleDetails?.[0]?.id || "";
+                    navigate(`/HostDashBoard/${hostId}`);
                   } else {
                     alert("Failed to update hackathon. Please check your inputs and try again.");
                   }
