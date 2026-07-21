@@ -133,6 +133,7 @@ function Card({ cardData, pageName, handleUpdateFlag }) {
               </div>
 
             </div>
+          </div>
 
           <div className="w-full flex flex-wrap md:flex-row my-6 items-center justify-center gap-3 md:gap-7">
             {cardData && cardData.hackathonStatus && (
