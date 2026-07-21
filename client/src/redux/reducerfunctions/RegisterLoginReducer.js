@@ -1,6 +1,7 @@
 import { API, getMethod } from "../../utils/axiosInstance/axiosInstance";
 
-const initialState = {
+const storedState = localStorage.getItem("userDetails");
+const initialState = storedState ? JSON.parse(storedState) : {
   role: undefined,
   isAuth: false,
   roleDetails: {},

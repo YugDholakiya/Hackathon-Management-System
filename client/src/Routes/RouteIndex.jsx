@@ -65,12 +65,7 @@ function Router() {
   const dispatch = useDispatch();
   console.log(loginState);
   console.log(loginState.role);
-  const [dummyLoginState, setDummyLoginState] = useState({});
-  useEffect(() => {
-    setDummyLoginState(loginState);
-  }, [loginState]);
 
-  console.log(dummyLoginState);
   return createBrowserRouter([
     {
       path: "*",
@@ -110,7 +105,7 @@ function Router() {
         {
           element: (
             <PrivateRoute
-              isAuth={dummyLoginState.role === "participant" || dummyLoginState.role === "host" ? true : false}
+              isAuth={loginState.role === "participant" || loginState.role === "host" ? true : false}
             />
           ),
           children: [
@@ -123,7 +118,7 @@ function Router() {
         {
           element: (
             <PrivateRoute
-              isAuth={dummyLoginState.role === "participant" ? true : false}
+              isAuth={loginState.role === "participant" ? true : false}
             />
           ),
           children: [
@@ -197,7 +192,7 @@ function Router() {
         {
           element: (
             <PrivateRoute
-              isAuth={dummyLoginState.role === "host" ? true : false}
+              isAuth={loginState.role === "host" ? true : false}
             />
           ),
           children: [
