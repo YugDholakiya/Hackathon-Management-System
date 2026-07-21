@@ -192,17 +192,16 @@ detail = [
             </div>
             <DetailsBlock details={detail} />
 
-            {hackathonDetails && hackathonDetails.hackathonStatus && hackathonDetails.hackathonStatus.toUpperCase() === "OPEN" && (
+            {hackathonDetails && hackathonDetails.hackathonStatus && hackathonDetails.hackathonStatus.toUpperCase() === "OPEN" && loginState?.role !== "host" && (
               <div className="ml-[75px] md:mx-auto my-10 w-fit">
                 {(() => {
-                  const isHostUser = loginState && loginState.isAuth && loginState.role === "host" && loginState.roleDetails && loginState.roleDetails.length > 0 && hackathonDetails.hostId === loginState.roleDetails[0].id;
                   const hasApplied = generalState.hackathonApplications && generalState.hackathonApplications.some(
                     app => app.hackathonId === hackathonDetails.id && app.leaderId === (loginState.roleDetails && loginState.roleDetails.length > 0 ? loginState.roleDetails[0].id : null)
                   );
                   return (
                     <Button
                       onClick={() => {
-                        if (!hasApplied && !isHostUser) {
+                        if (!hasApplied) {
                           navigate(`/applyNow/${hackathonId}/${hackathonDetails.name}`);
                         }
                       }}

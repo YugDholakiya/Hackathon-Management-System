@@ -129,6 +129,7 @@ const [LeaderId,setLeaderId] = useState("");
 
                 if (success) {
                   alert("Application submitted successfully!");
+                  dispatch(generalThunkFunction("getAllHackathonApplications"));
                   action.resetForm();
                   navigate(`/ParticipantDashBoard/${LeaderId}`);
                 } else {
