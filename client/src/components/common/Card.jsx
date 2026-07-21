@@ -83,7 +83,7 @@ function Card({ cardData, pageName, handleUpdateFlag }) {
 
   return (
     <>
-      <div className="relative max-w-2xl hover:shadow-xl hover:shadow-gray-400">
+      <div className="relative w-full max-w-2xl mx-auto hover:shadow-xl hover:shadow-gray-400">
         <span className="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-blue-500 rounded-lg"></span>
         <div className="relative h-full p-3 bg-white border-2 border-blue-500 rounded-lg">
           <div className="flex items-center -mt-1">
@@ -179,9 +179,9 @@ function Card({ cardData, pageName, handleUpdateFlag }) {
                 : ""}
             </div>
           </div>
-          <div className="w-full flex items-center justify-center gap-x-7">
+          <div className="w-full flex flex-wrap items-center justify-center gap-4 md:gap-7">
             {cardData && (
-              <div className="w-full flex items-center justify-center gap-x-7">
+              <>
                  {cardData.hackathonStatus &&
                 (loginState.role === "participant") &&
                 (cardData.hackathonStatus.toUpperCase() === "OPEN" ||
@@ -249,7 +249,7 @@ function Card({ cardData, pageName, handleUpdateFlag }) {
                     </Button>
                   </>
                 ) : null} */}
-              </div>
+              </>
             )}
           </div>
         </div>

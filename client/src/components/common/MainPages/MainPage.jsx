@@ -278,11 +278,11 @@ function MainPage({
         {/* {pageToLoad(activeButton)} */}
         {/* <AddHackathonForm /> */}
 
-        {paginationFlag ? (
+        {paginationFlag && paginationData && paginationData.length > 0 ? (
           <>
             <div className=" my-10">
               <Pagination
-              handleUpdateFlag={handleUpdateFlag}
+                handleUpdateFlag={handleUpdateFlag}
                 pageName={pageName}
                 activeButton={activeButton}
                 data={paginationData}
@@ -291,7 +291,11 @@ function MainPage({
               />
             </div>
           </>
-        ) : null}
+        ) : (
+          <div className="flex justify-center items-center my-10">
+            <p className="text-gray-500 text-lg">No data available to display.</p>
+          </div>
+        )}
       </div>
     </>
   );
