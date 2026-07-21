@@ -21,13 +21,13 @@ console.log(pageName)
 console.log(activeButton)
   function prevPage() {
     setCurrentPage((currentPage) =>
-      currentPage !== 1 ? currentPage - 1 : currentPage
+      currentPage > 1 ? currentPage - 1 : currentPage
     );
   }
 
   function nextPage() {
     setCurrentPage((currentPage) =>
-      currentPage !== Math.ceil(lastPage) ? currentPage + 1 : currentPage
+      currentPage < lastPage ? currentPage + 1 : currentPage
     );
   }
 
@@ -78,9 +78,9 @@ console.log(activeButton)
                 <Button
                   onClick={() => setCurrentPage(1)}
                   buttonStyle={`h-10 px-5 text-${
-                    currentPage === 1 ? "white" : "blue-500"
+                    currentPage <= 1 ? "white" : "blue-500"
                   } font-bold transition-colors duration-150 rounded-l-lg focus:shadow-outline ${
-                    currentPage === 1
+                    currentPage <= 1
                       ? "bg-gray-300 cursor-not-allowed"
                       : "bg-blue-200 hover:bg-green-100 hover:text-blue-500"
                   }`}
@@ -92,9 +92,9 @@ console.log(activeButton)
                 <Button
                   onClick={prevPage}
                   buttonStyle={`h-10 px-5 text-${
-                    currentPage === 1 ? "white" : "blue-500"
+                    currentPage <= 1 ? "white" : "blue-500"
                   } transition-colors duration-150 focus:shadow-outline ${
-                    currentPage === 1
+                    currentPage <= 1
                       ? "bg-gray-300 cursor-not-allowed border-l-[0.1px] border-white"
                       : "hover:bg-green-100"
                   }`}
@@ -113,33 +113,41 @@ console.log(activeButton)
                       style="text-white bg-blue-500 cursor-default border border-r-0 border-green-600 "
                     />
                   </li>
-                  <li>
-                    <PageNumber
-                      pageNumber={currentPage + 1}
-                      style="hover:bg-green-100"
-                    />
-                  </li>
-                  <li>
-                    <PageNumber
-                      pageNumber={currentPage + 2}
-                      style="hover:bg-green-100"
-                    />
-                  </li>
+                  {lastPage >= 2 && (
+                    <li>
+                      <PageNumber
+                        pageNumber={currentPage + 1}
+                        style="hover:bg-green-100"
+                      />
+                    </li>
+                  )}
+                  {lastPage >= 3 && (
+                    <li>
+                      <PageNumber
+                        pageNumber={currentPage + 2}
+                        style="hover:bg-green-100"
+                      />
+                    </li>
+                  )}
                 </>
               ) : currentPage === lastPage ? (
                 <>
-                  <li>
-                    <PageNumber
-                      pageNumber={currentPage - 2}
-                      style="hover:bg-green-100"
-                    />
-                  </li>
-                  <li>
-                    <PageNumber
-                      pageNumber={currentPage - 1}
-                      style="hover:bg-blue-100"
-                    />
-                  </li>
+                  {lastPage >= 3 && (
+                    <li>
+                      <PageNumber
+                        pageNumber={currentPage - 2}
+                        style="hover:bg-green-100"
+                      />
+                    </li>
+                  )}
+                  {lastPage >= 2 && (
+                    <li>
+                      <PageNumber
+                        pageNumber={currentPage - 1}
+                        style="hover:bg-blue-100"
+                      />
+                    </li>
+                  )}
                   <li>
                     <PageNumber
                       pageNumber={currentPage}
@@ -174,9 +182,9 @@ console.log(activeButton)
                 <Button
                   onClick={nextPage}
                   buttonStyle={`h-10 px-5 text-${
-                    currentPage === lastPage ? "white" : "blue-500"
+                    currentPage >= lastPage ? "white" : "blue-500"
                   } transition-colors duration-150 ${
-                    currentPage === lastPage
+                    currentPage >= lastPage
                       ? "bg-gray-300 cursor-not-allowed border-r-[0.1px] border-white"
                       : "bg-white focus:shadow-outline hover:bg-green-100"
                   }`}
@@ -190,9 +198,9 @@ console.log(activeButton)
                 <Button
                   onClick={() => setCurrentPage(lastPage)}
                   buttonStyle={`h-10 px-5 text-${
-                    currentPage === lastPage ? "white" : "blue-500"
+                    currentPage >= lastPage ? "white" : "blue-500"
                   } font-bold transition-colors duration-150 rounded-r-lg focus:shadow-outline ${
-                    currentPage === lastPage
+                    currentPage >= lastPage
                       ? "bg-gray-300 cursor-not-allowed "
                       : "bg-blue-200 hover:bg-green-100 hover:text-blue-500"
                   }`}
