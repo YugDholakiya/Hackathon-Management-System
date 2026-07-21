@@ -16,7 +16,7 @@ export const LoginSchema = Yup.object({
   Email: Yup.string().email().required("Please enter your email"),
   Password: Yup.string().min(6).required("Please enter your password"),
   Role: Yup.string()
-    .oneOf(["Admin", "Host", "Participant"], "Invalid role selected")
+    .oneOf(["Host", "Participant"], "Invalid role selected")
     .required("Please select a role"),
 });
 
@@ -51,9 +51,7 @@ export const ApplyNowSchema = Yup.object().shape({
           .oneOf(['Male', 'Female', 'Other'], 'Invalid gender')
           .required('Required'),
       })
-    )
-    .required('Must have team members')
-    .min(1, 'Minimum of 1 team members'),
+    ),
   problemStatementAbstract: Yup.string()
     .required('Required'),
   // technologyUsed: Yup.array()

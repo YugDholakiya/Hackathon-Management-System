@@ -345,7 +345,6 @@ function RegisterLogin({ login }) {
                           <option value="" disabled defaultValue>
                             Select Role
                           </option>
-                          {isLogin && <option value="Admin">Admin</option>}
                           <option value="Host">Host</option>
                           <option value="Participant">Participant</option>
                         </Field>

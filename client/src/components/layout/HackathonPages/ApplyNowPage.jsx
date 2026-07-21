@@ -104,7 +104,7 @@ const [LeaderId,setLeaderId] = useState("");
             <Formik
               initialValues={initialValues}
               validationSchema={ApplyNowSchema}
-              onSubmit={(values, action) => {
+              onSubmit={async (values, action) => {
                 console.log("submit worked");
                 console.log(values.teamDetails);
                 const ApplicationDetails = {
@@ -120,16 +120,20 @@ const [LeaderId,setLeaderId] = useState("");
                   technologyUsed: selectedTechnologies,
                 };
 
-                dispatch(
+                const success = await dispatch(
                   generalThunkFunction(
                     "addHackathonApplication",
                     ApplicationDetails
                   )
                 );
 
-                console.log(ApplicationDetails);
-
-                action.resetForm();
+                if (success) {
+                  alert("Application submitted successfully!");
+                  action.resetForm();
+                  navigate(`/ParticipantDashBoard/${LeaderId}`);
+                } else {
+                  alert("Failed to submit application. You might have already applied.");
+                }
               }}
 
               // dispatch(addHackathon(values));

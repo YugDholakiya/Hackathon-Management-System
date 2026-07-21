@@ -132,12 +132,7 @@ function Card({ cardData, pageName, handleUpdateFlag }) {
                 </div>
               </div>
 
-              <div className="w-fit flex flex-col items-center font-bold justify-center ml-auto text-base text-green-600">
-                100+
-                <div>participants</div>
-              </div>
             </div>
-          </div>
 
           <div className="w-full flex flex-wrap md:flex-row my-6 items-center justify-center gap-3 md:gap-7">
             {cardData && cardData.hackathonStatus && (
@@ -182,28 +177,35 @@ function Card({ cardData, pageName, handleUpdateFlag }) {
           <div className="w-full flex flex-wrap items-center justify-center gap-4 md:gap-7">
             {cardData && (
               <>
-                 {cardData.hackathonStatus &&
+                {cardData.hackathonStatus &&
                 (loginState.role === "participant") &&
                 (cardData.hackathonStatus.toUpperCase() === "OPEN" ||
                   cardData.hackathonStatus.toUpperCase() === "CLOSED") ? (
-                  <Button
-                    onClick={() => {
-                      if (
-                        pageName === "ParticipantMainPage" ||
-                        pageName === "HostMainPage" ||
-                        pageName === "HackathonsPage" || pageName === "HappeningNowPage"
-                      ) {
-                        navigate(`/applyNow/${cardData.id}/${cardData.name}`);
-                      }
-                    }}
-                    variant="primary"
-                    buttonStyle="m-0 bg-blue-500 font-bold py-4 px-6"
-                  >
-                    {cardData.hackathonStatus.toUpperCase() === "OPEN" ||
-                    !participantPastHackathons.includes(cardData.id)
-                      ? "Apply Now"
-                      : "See Projects"}
-                  </Button>
+                  (() => {
+                    const hasApplied = generalState.hackathonApplications && generalState.hackathonApplications.some(
+                      app => app.hackathonId === cardData.id && app.leaderId === (loginState.roleDetails && loginState.roleDetails.length > 0 ? loginState.roleDetails[0].id : null)
+                    );
+                    return (
+                      <Button
+                        onClick={() => {
+                          if (!hasApplied && !isHostUser) {
+                            if (
+                              pageName === "ParticipantMainPage" ||
+                              pageName === "HostMainPage" ||
+                              pageName === "HackathonsPage" || pageName === "HappeningNowPage"
+                            ) {
+                              navigate(`/applyNow/${cardData.id}/${cardData.name}`);
+                            }
+                          }
+                        }}
+                        variant={hasApplied ? "secondary" : "primary"}
+                        buttonStyle={`m-0 font-bold py-4 px-6 ${hasApplied ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600 text-white'}`}
+                        disabled={hasApplied}
+                      >
+                        {hasApplied ? "Already Applied" : "Apply Now"}
+                      </Button>
+                    );
+                  })()
                 ) : null}
                 <Button
                   variant="green"

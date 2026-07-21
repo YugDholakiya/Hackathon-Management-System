@@ -9,7 +9,7 @@ import RegisterLogin from "../../Login-Register/RegisterLogin";
 import AddHackathonForm from "../../layout/HackathonPages/AddHackathonsForm";
 import { useSelector, useDispatch } from "react-redux";
 import { generalThunkFunction } from "../../../redux/actions/Genralactions";
-import AdminMainPage from "../../layout/AdminPages/AdminMainPage";
+
 import { useNavigate } from "react-router-dom";
 import { Button } from "../Button";
 function MainPage({
@@ -88,16 +88,7 @@ function MainPage({
         }
       });
       setPaginationData(newPaginationData); // Update paginationData with filtered data
-    } else if (pageName === "AdminMainPage" && activeUpper === "HACKATHONS") {
-      setPaginationData(hackathons); // Set paginationData to HACKATHONS data
-    } else if (pageName === "AdminMainPage" && activeUpper === "HOSTS") {
-      setPaginationData(hosts); // Set paginationData to HOSTS data
-    } else if (
-      pageName === "AdminMainPage" &&
-      activeUpper === "PARTICIPANTS"
-    ) {
-      console.log(participants)
-      setPaginationData(participants); // Set paginationData to PARTICIPANTS data
+    } else if (pageName === "ParticipantMainPage") {
     } else if (
       pageName === "ParticipantMainPage" &&
       activeUpper === "APPLIED HACKATHONS"

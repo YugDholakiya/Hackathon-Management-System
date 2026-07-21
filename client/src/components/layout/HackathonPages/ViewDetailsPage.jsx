@@ -194,13 +194,26 @@ detail = [
 
             {hackathonDetails && hackathonDetails.hackathonStatus && hackathonDetails.hackathonStatus.toUpperCase() === "OPEN" && (
               <div className="ml-[75px] md:mx-auto my-10 w-fit">
-                <Button
-                  onClick={() => navigate(`/applyNow/${hackathonId}/${hackathonDetails.name}`)}
-                  variant="primary"
-                  buttonStyle="m-0 bg-blue-500 font-bold py-4 px-6"
-                >
-                  Apply Now
-                </Button>
+                {(() => {
+                  const isHostUser = loginState && loginState.isAuth && loginState.role === "host" && loginState.roleDetails && loginState.roleDetails.length > 0 && hackathonDetails.hostId === loginState.roleDetails[0].id;
+                  const hasApplied = generalState.hackathonApplications && generalState.hackathonApplications.some(
+                    app => app.hackathonId === hackathonDetails.id && app.leaderId === (loginState.roleDetails && loginState.roleDetails.length > 0 ? loginState.roleDetails[0].id : null)
+                  );
+                  return (
+                    <Button
+                      onClick={() => {
+                        if (!hasApplied && !isHostUser) {
+                          navigate(`/applyNow/${hackathonId}/${hackathonDetails.name}`);
+                        }
+                      }}
+                      variant={hasApplied ? "secondary" : "primary"}
+                      buttonStyle={`m-0 font-bold py-4 px-6 ${hasApplied ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600 text-white'}`}
+                      disabled={hasApplied}
+                    >
+                      {hasApplied ? "Already Applied" : "Apply Now"}
+                    </Button>
+                  );
+                })()}
               </div>
             )}
           </div>

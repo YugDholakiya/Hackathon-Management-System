@@ -57,8 +57,7 @@ console.log(activeButton)
         {
   data && data.length ? (
     data.slice(firstIndex, lastIndex).map((cardData, index) => (
-      (pageName === "AdminMainPage" && (activeButton === "HOSTS" || activeButton === "PARTICIPANTS")) || 
-      (pageName === "HostApplicationsPage" && (activeButton === "PENDING" || activeButton === "ACCEPTED")) ? (
+      (pageName === "HostApplicationsPage" && (activeButton === "PENDING" || activeButton === "ACCEPTED" || activeButton === "REJECTED")) ? (
         <MainListItem key={index} cardData={cardData} pageName={pageName} handleUpdateFlag={handleUpdateFlag}/>
       ) : (
         <Card key={index} cardData={cardData} pageName={pageName} handleUpdateFlag={handleUpdateFlag} />

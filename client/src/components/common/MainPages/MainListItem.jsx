@@ -63,7 +63,7 @@ if(result.success){
       >
         <div className="w-full">
           <div className="font-bold">
-            {pageName === "AdminMainPage" && cardData && cardData.firstName
+            {cardData && cardData.firstName
               ? cardData.firstName
               : pageName === "HostApplicationsPage" &&
                 cardData &&
@@ -74,7 +74,7 @@ if(result.success){
 
           <div className="text-gray-500 font-bold text-sm pt-1">
             <span>
-              {pageName === "AdminMainPage" && cardData && cardData.email
+              {cardData && cardData.email
                 ? cardData.email
                 : pageName === "HostApplicationsPage" &&
                   cardData &&
@@ -88,41 +88,38 @@ if(result.success){
         </div>
 
         <div className="w-full space-x-3   flex mt-2 md:mt-0 justify-center p-[1px] md:p-[4px] ">
-          {pageName === "AdminMainPage" ? null : (
-            <>
-              {" "}
+          <>
+            {" "}
+            <Button
+              variant="green"
+              buttonStyle="m-0 bg-green-500 text-xs md:text-sm font-bold py-1 md:py-1  "
+              onClick={() => navigate(`/TeamViewDetailPage/${cardData.id}`)}
+            >
+              View Details
+            </Button>
+            {cardData &&
+            cardData.applicationStatus &&
+            cardData.applicationStatus.toUpperCase() === "ACCEPTED" ? (
+              <div className="hidden">
+                {" "}
+                <Button></Button>
+              </div>
+            ) : (
               <Button
-                variant="green"
-                buttonStyle="m-0 bg-green-500 text-xs md:text-sm font-bold py-1 md:py-1  "
-                onClick={() => navigate(`/TeamViewDetailPage/${cardData.id}`)}
+                onClick={() => handleAccept(cardData.id)}
+                variant="primary"
+                buttonStyle="m-0 bg-blue-500 text-xs md:text-sm font-bold py-1 md:py-1  "
               >
-                View Details
+                {pageName === "HostApplicationsPage" ? "Accept" : "Apply Now"}
               </Button>
-              {cardData &&
-              cardData.applicationStatus &&
-              cardData.applicationStatus.toUpperCase() === "ACCEPTED" ? (
-                <div className="hidden">
-                  {" "}
-                  <Button></Button>
-                </div>
-              ) : (
-                <Button
-                  onClick={() => handleAccept(cardData.id)}
-                  variant="primary"
-                  buttonStyle="m-0 bg-blue-500 text-xs md:text-sm font-bold py-1 md:py-1  "
-                >
-                  {pageName === "HostApplicationsPage" ? "Accept" : "Apply Now"}
-                </Button>
-              )}
-            </>
-          )}
+            )}
+          </>
 
           <Button
             onClick={() => {
               if (pageName === "HostApplicationsPage") {
                 handleReject(cardData.id);
               } else if (
-                pageName === "AdminMainPage" &&
                 cardData &&
                 cardData.roles &&
                 cardData.roles.length > 0

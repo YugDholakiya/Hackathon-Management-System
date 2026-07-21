@@ -85,7 +85,7 @@ export const updateHackathon = async (req, res) => {
       return res.status(404).json({ message: 'Hackathon not found' });
     }
 
-    if (hackathon.hostId !== req.user.id && req.user.role !== 'admin') {
+    if (hackathon.hostId !== req.user.id) {
       return res.status(403).json({ message: 'Not authorized to update this hackathon' });
     }
 
@@ -105,7 +105,7 @@ export const deleteHackathon = async (req, res) => {
       return res.status(404).json({ message: 'Hackathon not found' });
     }
 
-    if (hackathon.hostId !== req.user.id && req.user.role !== 'admin') {
+    if (hackathon.hostId !== req.user.id) {
       return res.status(403).json({ message: 'Not authorized to delete this hackathon' });
     }
 

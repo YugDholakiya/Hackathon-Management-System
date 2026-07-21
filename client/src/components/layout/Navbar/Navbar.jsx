@@ -46,9 +46,6 @@ console.log(isAuth);
     navigate("/HostProfile");
   }
 
-  function toAdminProfile() {
-    navigate("/AdminProfile");
-  }
 
   const navigation = [
     { name: "Home", path: "/" },
@@ -63,8 +60,6 @@ console.log(isAuth);
       navigation.splice(3, 0, { name: "Dashboard", path: `/ParticipantDashBoard/${userId}` });
     } else if (role === "host") {
       navigation.splice(3, 0, { name: "Dashboard", path: `/HostDashBoard/${userId}` });
-    } else if (role === "admin") {
-      navigation.splice(3, 0, { name: "Dashboard", path: "/AdminDashBoard" });
     }
   }
 
@@ -81,9 +76,7 @@ console.log(isAuth);
         case "participant":
           toParticipantProfile();
           break;
-        case "admin":
-          toAdminProfile();
-          break;
+
         default:
           alert("Unknown role. Please contact support for assistance.");
       }

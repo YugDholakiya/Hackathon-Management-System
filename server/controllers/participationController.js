@@ -9,6 +9,10 @@ export const registerForHackathon = async (req, res) => {
       return res.status(404).json({ message: 'Hackathon not found' });
     }
 
+    if (hackathon.hostId === req.user.id) {
+      return res.status(403).json({ message: 'Organizers cannot apply to their own hackathons' });
+    }
+
     const existingParticipation = await Participation.findOne({
       where: { userId: req.user.id, hackathonId },
     });
@@ -96,14 +100,7 @@ export const getUserRegistrations = async (req, res) => {
 export const getAllParticipations = async (req, res) => {
   try {
     let participations;
-    if (req.user.role === 'admin') {
-      participations = await Participation.findAll({
-        include: [
-          { model: User, as: 'participant', attributes: ['id', 'firstName', 'email', 'profileImage'] },
-          { model: Hackathon, as: 'hackathon', attributes: ['id', 'title', 'hostId'] },
-        ],
-      });
-    } else if (req.user.role === 'host') {
+    if (req.user.role === 'host') {
       // Find all hackathons hosted by this user
       const hostHackathons = await Hackathon.findAll({
         where: { hostId: req.user.id },
@@ -149,11 +146,10 @@ export const getParticipationById = async (req, res) => {
       return res.status(404).json({ message: 'Participation not found' });
     }
 
-    // Authorization check: participant, host of hackathon, or admin
+    // Authorization check: participant or host of hackathon
     if (
       participation.userId !== req.user.id &&
-      participation.hackathon.hostId !== req.user.id &&
-      req.user.role !== 'admin'
+      participation.hackathon.hostId !== req.user.id
     ) {
       return res.status(403).json({ message: 'Not authorized to view this application' });
     }
@@ -179,8 +175,8 @@ export const updateParticipationStatus = async (req, res) => {
       return res.status(404).json({ message: 'Participation not found' });
     }
 
-    // Verify if logged in user is the host of the hackathon or an admin
-    if (participation.hackathon.hostId !== req.user.id && req.user.role !== 'admin') {
+    // Verify if logged in user is the host of the hackathon
+    if (participation.hackathon.hostId !== req.user.id) {
       return res.status(403).json({ message: 'Not authorized to update this application' });
     }
 

@@ -291,11 +291,10 @@ export function generalThunkFunction(methodName, data) {
           "http://localhost:8000/hackathonApplications", JSON.stringify(newHackathonApplication)
         );
         console.log(result);
-        // if (result.success) {
-        //   workSuccess(true);
-         
-        // }
-        break;
+        if (result.success) {
+          return true;
+        }
+        return false;
 
 
 
