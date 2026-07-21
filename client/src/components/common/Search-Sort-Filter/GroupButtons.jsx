@@ -31,7 +31,7 @@ function GroupButtons({ groupButtonMembers, activeButton, setActiveButton }) {
 
   return (
     <>
-      <div className={`flex flex-row flex-wrap justify-center w-full max-w-3xl mx-4 border-2 shadow-md shadow-blue-500 border-blue-300 rounded-md p-1`}>
+      <div className={`flex flex-row flex-wrap justify-center w-full max-w-3xl border-2 shadow-md shadow-blue-500 border-blue-300 rounded-md p-1`}>
         {groupButtonMembers.map((member, index) => (
           <CommonButton
             key={index}

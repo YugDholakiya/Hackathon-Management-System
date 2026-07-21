@@ -243,7 +243,7 @@ function MainPage({
   return (
     <>
       <div>
-        <div className=" flex justify-center items-center my-10   ">
+        <div className="flex justify-center items-center my-10 px-4">
           <GroupButtons
             groupButtonMembers={groupButtonMembers}
             activeButton={activeButton}

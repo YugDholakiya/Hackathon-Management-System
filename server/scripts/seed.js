@@ -52,7 +52,7 @@ const seedDatabase = async () => {
         password: 'password123',
         role: 'admin',
       }
-    ]);
+    ], { individualHooks: true });
 
     console.log('✓ Sample users created');
 
