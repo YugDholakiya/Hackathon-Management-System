@@ -216,6 +216,14 @@ function Card({ cardData, pageName, handleUpdateFlag }) {
                   View Details
                 </Button>
                 {pageName === "HostMainPage" && (
+                  <>
+                  <Button
+                    variant="primary"
+                    buttonStyle="m-0 bg-blue-500 font-bold py-4 px-6 text-white hover:bg-blue-600"
+                    onClick={() => navigate(`/editHackathon/${cardData.id}`)}
+                  >
+                    Edit Hackathon
+                  </Button>
                   <Button
                     variant="danger"
                     buttonStyle="m-0 bg-red-500 font-bold py-4 px-6 text-white hover:bg-red-600"
@@ -223,6 +231,7 @@ function Card({ cardData, pageName, handleUpdateFlag }) {
                   >
                     Remove Hackathon
                   </Button>
+                  </>
                 )}
                 {/* {participantAppliedHacathons.includes(cardData.id) ||
                 cardData.hackathonStatus.toUpperCase() === "OPEN" ||

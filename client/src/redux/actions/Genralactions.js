@@ -1,4 +1,4 @@
-import { getMethod, postMethod, deleteMethod } from "../../utils/axiosInstance/axiosInstance";
+import { getMethod, postMethod, deleteMethod, putMethod } from "../../utils/axiosInstance/axiosInstance";
 import { getUsers } from "../../utils/axiosInstance/axiosInstance";
 
 
@@ -226,6 +226,40 @@ export function generalThunkFunction(methodName, data) {
 
       case "DeleteHackathon":
         result = await deleteMethod(`http://localhost:8000/hackathons/${data}`);
+        if (result.success) {
+          workSuccess(true);
+          return true;
+        }
+        return false;
+
+      case "UpdateHackathon":
+        const updateHackathonDetails = {
+          name: data.name,
+          status: data.status,
+          tagline: data.tagline,
+          description: data.description,
+          prizes: {
+            prizePool: data.prizes,
+            perks: data.perks,
+          },
+          techstacks: data.techstacks,
+          dates: {
+            registrationStart: data.registrationStart,
+            registrationEnd: data.registrationEnd,
+            hackathonStart: data.hackathonStart,
+            hackathonEnd: data.hackathonEnd,
+          },
+          teamSize: {
+            max: data.teamMax,
+            min: data.teamMin,
+          },
+          mode: data.mode,
+          location: data.location,
+        };
+
+        result = await putMethod(
+          `http://localhost:8000/hackathons/${data.id}`, JSON.stringify(updateHackathonDetails)
+        );
         if (result.success) {
           workSuccess(true);
           return true;

@@ -225,35 +225,37 @@ const [LeaderId,setLeaderId] = useState("");
                           htmlFor="teamMin"
                           className="text-xs font-semibold px-1"
                         >
-                          Team Members
+                          Team Members (Min {hackathonDetails?.teamSize?.min || 1} - Max {hackathonDetails?.teamSize?.max || 4})
                         </label>
-                        <div className="grid grid-cols-5 gap-1 ">
-                          {hackathonDetails
-                            ? teamMembers.map((member) => (
-                                <div className="flex ">
-                                  <label
-                                    htmlFor="teamMin"
-                                    className="text-xs font-semibold px-1"
-                                  >
-                                    {member}
-                                  </label>
-                                  <Field
-                                    type="radio"
-                                    id={`teamMin-${member}`}
-                                    name="teamMin"
-                                    value={member}
-                                    onChange={(e) =>
-                                      setTeamSize(parseInt(e.target.value))
-                                    }
-                                    checked={teamSize === member}
-                                    className="w-full  text-center  py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
-                                    placeholder="number"
-                                  />
-                                </div>
-                              ))
-                            : null}
-                        </div>
-
+                        <Field
+                          type="number"
+                          id="teamMin"
+                          name="teamMin"
+                          value={teamSize}
+                          onChange={(e) => {
+                            let val = parseInt(e.target.value);
+                            const max = hackathonDetails?.teamSize?.max ? parseInt(hackathonDetails.teamSize.max) : 4;
+                            const min = hackathonDetails?.teamSize?.min ? parseInt(hackathonDetails.teamSize.min) : 1;
+                            if (isNaN(val)) {
+                              val = "";
+                            }
+                            setTeamSize(val);
+                          }}
+                          onBlur={(e) => {
+                            let val = parseInt(e.target.value);
+                            const max = hackathonDetails?.teamSize?.max ? parseInt(hackathonDetails.teamSize.max) : 4;
+                            const min = hackathonDetails?.teamSize?.min ? parseInt(hackathonDetails.teamSize.min) : 1;
+                            if (isNaN(val) || val < min) {
+                              setTeamSize(min);
+                            } else if (val > max) {
+                              setTeamSize(max);
+                            }
+                          }}
+                          min={hackathonDetails?.teamSize?.min || 1}
+                          max={hackathonDetails?.teamSize?.max || 4}
+                          className="w-full text-center py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
+                          placeholder="Number of team members"
+                        />
                         {/* <ErrorMessage
                           name="teamMin"
                           component="div"

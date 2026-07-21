@@ -55,6 +55,9 @@ const MainPage = React.lazy(() =>
 const AddHackathonForm = React.lazy(() =>
   import("../components/layout/HackathonPages/AddHackathonsForm")
 );
+const EditHackathonForm = React.lazy(() =>
+  import("../components/layout/HackathonPages/EditHackathonForm")
+);
 const TeamViewDetails = React.lazy(() =>
   import("../components/layout/HostPages/TeamViewDetails")
 );
@@ -231,6 +234,10 @@ function Router() {
             {
               path: "/addNewHackathon",
               element: <AddHackathonForm />,
+            },
+            {
+              path: "/editHackathon/:hackathonId",
+              element: <EditHackathonForm />,
             },
             {
               path: "/HostProfile",

@@ -4,6 +4,7 @@ import { User, Hackathon, Participation } from '../models/index.js';
 const seedDatabase = async () => {
   try {
     console.log('Starting database seed...');
+    await sequelize.sync({ force: true });
 
     // Create 7 sample users
     const users = await User.bulkCreate([
@@ -162,6 +163,36 @@ const seedDatabase = async () => {
         maxParticipants: 100,
         hostId: users[0].id,
         status: 'upcoming',
+      },
+      {
+        title: 'Past AR/VR Hackathon',
+        description: 'Building immersive experiences with augmented and virtual reality.',
+        tagline: 'See the unseen',
+        startDate: new Date('2023-11-05'),
+        endDate: new Date('2023-11-07'),
+        registrationStart: new Date('2023-10-01'),
+        registrationEnd: new Date('2023-10-31'),
+        location: 'London, UK',
+        category: 'AR/VR',
+        prizePool: 12000,
+        maxParticipants: 80,
+        hostId: users[1].id,
+        status: 'completed',
+      },
+      {
+        title: 'Retro Gaming GameJam',
+        description: 'Develop an 8-bit or 16-bit retro game over the weekend.',
+        tagline: 'Nostalgia overloaded',
+        startDate: new Date('2024-02-15'),
+        endDate: new Date('2024-02-17'),
+        registrationStart: new Date('2024-01-10'),
+        registrationEnd: new Date('2024-02-10'),
+        location: 'Tokyo, Japan',
+        category: 'Gaming',
+        prizePool: 6000,
+        maxParticipants: 120,
+        hostId: users[2].id,
+        status: 'completed',
       },
     ]);
 
