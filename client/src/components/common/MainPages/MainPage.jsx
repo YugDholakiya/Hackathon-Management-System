@@ -88,7 +88,6 @@ function MainPage({
         }
       });
       setPaginationData(newPaginationData); // Update paginationData with filtered data
-    } else if (pageName === "ParticipantMainPage") {
     } else if (
       pageName === "ParticipantMainPage" &&
       activeUpper === "APPLIED HACKATHONS"
